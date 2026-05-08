@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check Stock</title>
+
+  <style>
+    body{
+      font-family:Arial;
+      background:#0f172a;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      margin:0;
+    }
+
+    .box{
+      background:#1e293b;
+      padding:30px;
+      border-radius:20px;
+      width:350px;
+      text-align:center;
+    }
+
+    input{
+      width:100%;
+      padding:12px;
+      margin-top:15px;
+      border:none;
+      border-radius:10px;
+    }
+
+    button{
+      margin-top:15px;
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      background:#3b82f6;
+      color:white;
+      cursor:pointer;
+    }
+
+    #result{
+      margin-top:20px;
+      font-size:18px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>Check Stock</h1>
+
+  <input type="text" id="search" placeholder="Masukkan nama barang">
+
+  <button onclick="checkStock()">
+    Check Stock
+  </button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+
+const items = [
+  {
+    name: "Bolt M28",
+    stock: 24,
+    location: "Rack A1"
+  },
+
+  {
+    name: "Filter Oli",
+    stock: 8,
+    location: "Rack B2"
+  },
+
+  {
+    name: "Hydraulic Hose",
+    stock: 15,
+    location: "Rack C1"
+  }
+]
+
+function checkStock(){
+
+  const keyword =
+    document.getElementById("search")
+    .value
+    .toLowerCase()
+
+  const item =
+    items.find(data =>
+      data.name.toLowerCase() === keyword
+    )
+
+  if(item){
+
+    document.getElementById("result").innerHTML =
+    `
+      Stock: ${item.stock} pcs <br>
+      Lokasi: ${item.location}
+    `
+  }
+
+  else{
+
+    document.getElementById("result").innerHTML =
+    "Barang tidak ditemukan"
+  }
+}
+
+</script>
+
+</body>
+</html>
